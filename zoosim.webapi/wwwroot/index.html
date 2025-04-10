@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>zoo sim</title>
+        <link href="css/style.css" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sunflower:wght@300&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="container">
+            <h1>zoo sim >:]</h1>
+        </header>
+        <main class="container container-flex">
+            <section class="game">
+                <div id="monkey-grid" class="animal-grid"></div>
+                <div id="giraff-grid" class="animal-grid"></div>
+                <div id="elephant-grid" class="animal-grid"></div>
+            </section>
+            <aside>
+                <h1>info:</h1>
+                <div class="action-bar-time-details">
+                    <h2>time:</h2>
+                    <h1 id="clock"></h1>
+                </div>
+                <div class="action-bar-time-details">
+                    <h2>time untill fatigue:</h2>
+                    <h1 id="fatigueTimer">0</h1>
+                </div>
+                <div class="action-bar-time-details">
+                    <h2>hours passed:</h2>
+                    <h1 id="hoursPassed">0</h1>
+                </div>
+                <div class="action-bar">
+                    <h2>actions:</h2>
+                    <div class="action-bar-actions">
+                        <div id="feedButton" class="button">
+                            feed
+                        </div>
+                        <div id="resetButton" class="button">
+                            reset
+                        </div>
+                    </div>
+                </div>
+
+            </aside>              
+        </main>
+        <script src="main.js" type="module">
+        </script>
+    </body>
+</html>
+

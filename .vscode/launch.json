@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/zoosim.webapi/zoosim.webapi.csproj",
+            "preLaunchTask": "build"
+        }
+    ]
+}
