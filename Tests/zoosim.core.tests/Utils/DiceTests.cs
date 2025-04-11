@@ -18,7 +18,7 @@ internal class DiceTests
     }
 
     [Test]
-    public void RollForFatigue()
+    public void RollForFatigue_ShouldReturn_ValuesBetween0And20()
     {
         // Arrange
         var min = 0;
@@ -35,7 +35,7 @@ internal class DiceTests
     }
 
     [Test]
-    public void RollForHeal()
+    public void RollForHeal_ShouldReturn_ValuesBetween10And26()
     {
         // Arrange
         var min = 10;
