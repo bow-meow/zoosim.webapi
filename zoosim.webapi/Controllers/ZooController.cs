@@ -49,10 +49,10 @@ public static class ZooController
         return GetAllAnimalsInternal(tabId, zooService);
     }
 
-    private static bool TryGetTabId(HttpContext context, out Guid tabId, out IResult? errorResult)
+    private static bool TryGetTabId(HttpContext context, out Guid tabId, out IResult errorResult)
     {
         tabId = Guid.Empty;
-        var tabIdStr = context.Request.Headers["X-Tab-ID"].ToString();
+        var tabIdStr = context.Request.Headers["Tab-ID"].ToString();
         if (string.IsNullOrEmpty(tabIdStr) || !Guid.TryParse(tabIdStr, out tabId))
         {
             errorResult = Results.BadRequest("id is invalid");

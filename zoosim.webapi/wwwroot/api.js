@@ -13,7 +13,7 @@ export async function getAllAnimals(){
                 method: 'GET',
                 headers:
                 {
-                    'X-Tab-ID': id
+                    'Tab-ID': id
                 }
             });
         if(!response.ok) throw new Error("failed to get state");
@@ -39,7 +39,7 @@ async function internalPost(address){
             headers:
             {
                 'Content-Type': 'application/json',
-                'X-Tab-ID': id
+                'Tab-ID': id
             }
         });
         if (!response.ok) throw new Error(`Failed call ${address}`);
