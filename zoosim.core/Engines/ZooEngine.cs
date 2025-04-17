@@ -28,7 +28,7 @@ public class ZooEngine : IZooEngine
     {
         foreach (var type in Enum.GetValues<AnimalType>())
         {
-            var animals = _animalManager.GetAnimalByType(type);
+            var animals = _animalManager.GetAnimalsByType(type);
             var foods = _foodFactory.GetFood(animals.Length);
 
             for (int i = 0; i < animals.Length; i++)
@@ -44,12 +44,12 @@ public class ZooEngine : IZooEngine
 
     public bool AreAnimalsHungry => _animalManager.AllAnimals.Any(animal => animal.IsHungry);
 
-    public IAnimal[] AllAnimals => _animalManager.AllAnimals.ToArray();
+    public IAnimal[] AllAnimals => [.. _animalManager.AllAnimals];
 
     public void CycleTime(TimeSpan time)
     {
         _clock.AddTime(time);
     }
 
-    public IAnimal[] GetAnimalsByType(AnimalType type) => _animalManager.GetAnimalByType(type);
+    public IAnimal[] GetAnimalsByType(AnimalType type) => _animalManager.GetAnimalsByType(type);
 }

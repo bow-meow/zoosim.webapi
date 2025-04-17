@@ -36,7 +36,7 @@ internal class AnimalManager : IAnimalManager
         _animalDictionary[animal.AnimalType].Add(animal);
     }
 
-    public IAnimal[] GetAnimalByType(AnimalType type)
+    public IAnimal[] GetAnimalsByType(AnimalType type)
     {
         return _animalDictionary.ContainsKey(type) ? [.. _animalDictionary[type]] : [];
     }

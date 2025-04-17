@@ -5,6 +5,6 @@ namespace zoosim.core.Managers;
 
 public interface IAnimalManager
 {
-    IAnimal[] GetAnimalByType(AnimalType type);
+    IAnimal[] GetAnimalsByType(AnimalType type);
     IEnumerable<IAnimal> AllAnimals { get; }
 }

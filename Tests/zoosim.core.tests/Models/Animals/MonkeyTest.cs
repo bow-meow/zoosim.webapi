@@ -39,10 +39,4 @@ public class MonkeyTest
         Assert.That(!_sut.IsAlive);
         Assert.That(!_sut.CanMove);
     }
-
-    [TearDown]
-    public void Teardown()
-    {
-        _sut.Dispose();
-    }
 }

@@ -41,7 +41,7 @@ public class ZooEngineTest
     {
         // Arrange
         var animal = Substitute.For<IAnimal>();
-        _animalManager.GetAnimalByType(AnimalType.Monkey).Returns([animal]);
+        _animalManager.GetAnimalsByType(AnimalType.Monkey).Returns([animal]);
 
         var food = Substitute.For<IFood>();
         _foodFactory.GetFood(1).Returns([food]);
@@ -105,7 +105,7 @@ public class ZooEngineTest
     {
         // Arrange
         var animal = Substitute.For<IAnimal>();
-        _animalManager.GetAnimalByType(AnimalType.Giraffe).Returns([animal]);
+        _animalManager.GetAnimalsByType(AnimalType.Giraffe).Returns([animal]);
 
         // Act
         var result = _sut.GetAnimalsByType(AnimalType.Giraffe);

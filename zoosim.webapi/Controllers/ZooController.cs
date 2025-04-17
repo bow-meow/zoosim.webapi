@@ -1,5 +1,7 @@
 ﻿using zoosim.core.Enums;
 using zoosim.core.Models;
+using zoosim.webapi.Dtos;
+using zoosim.webapi.Mappers;
 using zoosim.webapi.Services;
 namespace zoosim.webapi.Controllers;
 
@@ -55,7 +57,7 @@ public static class ZooController
         var tabIdStr = context.Request.Headers["Tab-ID"].ToString();
         if (string.IsNullOrEmpty(tabIdStr) || !Guid.TryParse(tabIdStr, out tabId))
         {
-            errorResult = Results.BadRequest("id is invalid");
+            errorResult = Results.BadRequest("id is in an invalid format. it should be a guid");
             return false;
         }
 
@@ -67,9 +69,9 @@ public static class ZooController
     {
         return new
         {
-            monkeys = allAnimals.Where(a => a.AnimalType == AnimalType.Monkey),
-            giraffes = allAnimals.Where(a => a.AnimalType == AnimalType.Giraffe),
-            elephants = allAnimals.Where(a => a.AnimalType == AnimalType.Elephant)
+            monkeys = allAnimals.Where(animal => animal.AnimalType == core.Enums.AnimalType.Monkey).Select(AnimalMapper.MapToDto),
+            giraffes = allAnimals.Where(animal => animal.AnimalType == core.Enums.AnimalType.Giraffe).Select(AnimalMapper.MapToDto),
+            elephants = allAnimals.Where(animal => animal.AnimalType == core.Enums.AnimalType.Elephant).Select(AnimalMapper.MapToDto),
         };
     }
 }

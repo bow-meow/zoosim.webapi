@@ -22,9 +22,7 @@ public class FoodFactory : IFoodFactory
         var foods = new IFood[numOfFood];
 
         for (int i = 0; i < numOfFood; i++)
-        {
             foods[i] = new Food(value);
-        }
 
         return foods;
     }

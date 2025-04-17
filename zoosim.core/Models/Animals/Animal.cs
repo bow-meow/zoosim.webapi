@@ -4,7 +4,7 @@ namespace zoosim.core.Models.Animals;
 
 public abstract class Animal : IAnimal
 {
-    private const float MAX_HEALTH = 100f;
+    private const float MAX_HEALTH = 100;
     public Animal()
     {
         Health = MAX_HEALTH;
@@ -44,11 +44,10 @@ public abstract class Animal : IAnimal
 
     public void Eat(IFood food)
     {
+        if (!IsAlive) return;
+        if (!IsHungry) return;
         using (food)
         {
-            if (!IsAlive) return;
-            if (!IsHungry) return;
-
             Health += Health * (food.HealingValue / 100f);
         }
     }
@@ -64,9 +63,4 @@ public abstract class Animal : IAnimal
     }
 
     public void Kill() => Health = 0;
-
-    public void Dispose()
-    {
-        Health = 0;
-    }
 }

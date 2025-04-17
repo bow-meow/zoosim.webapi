@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -8,11 +8,47 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="ClientApp\.gitignore" />
+    <Content Include="ClientApp\eslint.config.js" />
+    <Content Include="ClientApp\index.html" />
+    <Content Include="ClientApp\README.md" />
+    <Content Include="ClientApp\src\api.ts" />
+    <Content Include="ClientApp\src\App.css" />
+    <Content Include="ClientApp\src\App.tsx" />
+    <Content Include="ClientApp\public\assets\68f16b16.gif" />
+    <Content Include="ClientApp\public\assets\entei.png" />
+    <Content Include="ClientApp\public\assets\entei_dead.png" />
+    <Content Include="ClientApp\public\assets\girafarig.png" />
+    <Content Include="ClientApp\public\assets\girafarig_dead.png" />
+    <Content Include="ClientApp\public\assets\mankey.png" />
+    <Content Include="ClientApp\public\assets\mankey_dead.png" />
+    <Content Include="ClientApp\public\assets\phanpy.png" />
+    <Content Include="ClientApp\public\assets\phanpy_dead.png" />
+    <Content Include="ClientApp\src\components\ActionsPanel.tsx" />
+    <Content Include="ClientApp\src\components\AnimalCard.tsx" />
+    <Content Include="ClientApp\src\components\TimePanel.tsx" />
+    <Content Include="ClientApp\src\index.css" />
+    <Content Include="ClientApp\src\main.tsx" />
+    <Content Include="ClientApp\src\vite-env.d.ts" />
+    <Content Include="ClientApp\vite.config.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\zoosim.core\zoosim.core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <Target Name="BuildClientApp" BeforeTargets="Build">
+    <Exec WorkingDirectory="ClientApp/src" Command="npm install" />
+    <Exec WorkingDirectory="ClientApp/src" Command="npm run build" />
+  </Target>
 
 </Project>

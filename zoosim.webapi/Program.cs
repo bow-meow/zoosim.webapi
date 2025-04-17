@@ -1,4 +1,5 @@
 using zoosim.webapi.Controllers;
+using zoosim.webapi.Mappers;
 using zoosim.webapi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ var app = builder.Build();
 
 app.MapZooEndpoints();
 app.UseDefaultFiles();
+app.UseStaticFiles();
 app.MapStaticAssets();
 app.UseCors("AllowFrontend");
 

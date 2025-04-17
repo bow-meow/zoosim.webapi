@@ -21,7 +21,7 @@ public class AnimalFactory : IAnimalFactory
             AnimalType.Elephant => ServiceProvider.GetService<IElephant>(),
             AnimalType.Giraffe => ServiceProvider.GetService<IGiraffe>(),
             AnimalType.Monkey => ServiceProvider.GetService<IMonkey>(),
-            _ => throw new NotImplementedException($"The type {animalType} was not handled in the GetAnimal method"),
+            _ => throw new NotImplementedException($"The type {animalType} was not handled in the CreateAnimal method"),
         };
     }
 }

@@ -67,7 +67,7 @@ public class FatigueSystemTest
         _animalManager.AllAnimals.Returns([_elephant]);
         _dice.RollForFatigue().Returns(0);
 
-        var after = DateTime.Now.AddHours(3);
+        var after = DateTime.Now.AddHours(1);
 
         _clock.CurrentTime.Returns(after);
 
@@ -75,7 +75,7 @@ public class FatigueSystemTest
         _sut.Run(after);
 
         // Assert
-        _elephant.Received().Kill();
+        _elephant.Received(1).Kill();
     }
 
     [Test]

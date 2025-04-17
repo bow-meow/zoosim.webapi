@@ -21,8 +21,8 @@ namespace zoosim.core.Systems
 
                 var hoursPassed = (int)elapsed.TotalHours;
 
-                foreach (var animal in AnimalManager.AllAnimals.ToArray())
-                    for (var i = 0; i < hoursPassed; i++)
+                for (var i = 0; i < hoursPassed; i++)
+                    foreach (var animal in AnimalManager.AllAnimals.ToArray())
                         Execute(animal);
             }
         }

@@ -1,4 +1,5 @@
-﻿using zoosim.core.Managers;
+﻿using System.Collections.Concurrent;
+using zoosim.core.Managers;
 using zoosim.core.Models;
 using zoosim.core.Models.Animals;
 using zoosim.core.Utils;
@@ -7,7 +8,7 @@ namespace zoosim.core.Systems;
 
 public class FatigueSystem : System, ISystem
 {
-    private readonly Dictionary<IAnimal, int> _hoursWithoutMoving = [];
+    private readonly ConcurrentDictionary<IAnimal, int> _hoursWithoutMoving = [];
     private readonly IDice _dice;
     public FatigueSystem(IDice dice,
         IAnimalManager animalManager)
@@ -34,22 +35,22 @@ public class FatigueSystem : System, ISystem
 
     private void ElephantFatigue(IElephant elephant)
     {
-        if (!elephant.CanMove)
+        if (!_hoursWithoutMoving.ContainsKey(elephant))
+            _hoursWithoutMoving[elephant] = elephant.CanMove ? 0 : 1;
+
+        if (elephant.CanMove)
         {
-            if (!_hoursWithoutMoving.TryGetValue(elephant, out var hours))
-                hours = 0;
-
-            _hoursWithoutMoving[elephant] = ++hours;
-
-            if (hours > 1)
-                elephant.Kill();
-            else
-                Fatigue(elephant);
+            Fatigue(elephant);
+            _hoursWithoutMoving[elephant] = elephant.CanMove ? 0 : 1;
         }
         else
         {
-            _hoursWithoutMoving[elephant] = 0;
-            Fatigue(elephant);
+            _hoursWithoutMoving[elephant] += 1;
+
+            if (_hoursWithoutMoving[elephant] > 1)
+                elephant.Kill();
+            else
+                Fatigue(elephant);
         }
     }
 
