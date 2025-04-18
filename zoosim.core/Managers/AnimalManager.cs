@@ -1,26 +1,24 @@
-﻿using zoosim.core.Configuration;
-using zoosim.core.Enums;
+﻿using zoosim.core.Enums;
 using zoosim.core.Factories;
 using zoosim.core.Models;
+using zoosim.core.Repositories;
 
 namespace zoosim.core.Managers;
 
 internal class AnimalManager : IAnimalManager
 {
-    private IDictionary<AnimalType, List<IAnimal>> _animalDictionary = new Dictionary<AnimalType, List<IAnimal>>();
-    private List<IAnimal> _allAnimals { get; } = [];
+    private readonly IDictionary<AnimalType, List<IAnimal>> _animalDictionary = new Dictionary<AnimalType, List<IAnimal>>();
+    private readonly List<IAnimal> _allAnimals = [];
     public IEnumerable<IAnimal> AllAnimals => _allAnimals;
 
-    public AnimalManager(ZooConfiguration config, IAnimalFactory factory)
+    public AnimalManager(IAnimalRepository repository, IAnimalFactory factory)
     {
-        foreach (var animalInfo in config.AnimalInfos)
+        foreach(var type in Enum.GetValues<AnimalType>())
         {
-            for (int i = 0; i < animalInfo.NumOfAnimal; i++)
-            {
-                var animal = factory.CreateAnimal(animalInfo.AnimalType);
+            var animals = repository.GetAnimalsByType(type);
 
-                AddAnimal(animal);
-            }
+            foreach(var animal in animals)
+                AddAnimal(factory.CreateAnimal(animal.Type));
         }
     }
 
@@ -38,6 +36,6 @@ internal class AnimalManager : IAnimalManager
 
     public IAnimal[] GetAnimalsByType(AnimalType type)
     {
-        return _animalDictionary.ContainsKey(type) ? [.. _animalDictionary[type]] : [];
+        return _animalDictionary.TryGetValue(type, out List<IAnimal> value) ? [.. value] : [];
     }
 }

@@ -2,6 +2,7 @@
 using zoosim.core.Enums;
 using zoosim.core.Models;
 using zoosim.core.Models.Animals;
+using zoosim.webapi.Dtos;
 
 namespace zoosim.core.Factories;
 

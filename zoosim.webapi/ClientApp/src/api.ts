@@ -11,7 +11,11 @@ export interface Animal {
     health: number;
     isAlive: boolean;
     canMove: boolean;
-    img: {
+    aliveImg: {
+        src: string;
+        alt: string;
+    }
+    deadImg: {
         src: string;
         alt: string;
     }

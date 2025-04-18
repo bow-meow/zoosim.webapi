@@ -65,13 +65,13 @@ public static class ZooController
         return true;
     }
 
-    private static object GroupAnimalsByType(IEnumerable<IAnimal> allAnimals)
+    private static object GroupAnimalsByType(IEnumerable<AnimalDto> allAnimals)
     {
         return new
         {
-            monkeys = allAnimals.Where(animal => animal.AnimalType == core.Enums.AnimalType.Monkey).Select(AnimalMapper.MapToDto),
-            giraffes = allAnimals.Where(animal => animal.AnimalType == core.Enums.AnimalType.Giraffe).Select(AnimalMapper.MapToDto),
-            elephants = allAnimals.Where(animal => animal.AnimalType == core.Enums.AnimalType.Elephant).Select(AnimalMapper.MapToDto),
+            monkeys = allAnimals.Where(animal => animal.Type == AnimalType.Monkey),
+            giraffes = allAnimals.Where(animal => animal.Type == AnimalType.Giraffe),
+            elephants = allAnimals.Where(animal => animal.Type == AnimalType.Elephant),
         };
     }
 }
